@@ -27,6 +27,8 @@ const getTextVariantStyle = (variant: string) => {
       return "text-red-500";
     case "success":
       return "text-green-500";
+    case "white":
+      return "text-white";
     default:
       return "text-[#0286ff]";
   }
@@ -36,20 +38,25 @@ const CustomButton = ({
   onPress,
   title,
   bgVariant = "primary",
-  textVariant = "default",
+  textVariant = "primary",
   IconLeft,
   IconRight,
   className,
+  textStyle,
   ...props
 }: ButtonProps) => {
   return (
     <TouchableOpacity
-      className={`rounded-full shadow-md py-3 flex items-center justify-center shadow-neutral-400/70 ${getBgVariantStyle(bgVariant)} ${className}`}
+      className={`rounded-full shadow-md p-5 flex items-center justify-center shadow-neutral-400/70 ${getBgVariantStyle(bgVariant)} ${className}`}
       onPress={onPress}
       {...props}
     >
       {IconLeft && <IconLeft />}
-      <Text className={`text-lg text-white font-JakartaBold`}>{title}</Text>
+      <Text
+        className={`text-lg font-JakartaBold ${getTextVariantStyle(textVariant)} ${textStyle}`}
+      >
+        {title}
+      </Text>
       {IconRight && <IconRight />}
     </TouchableOpacity>
   );
